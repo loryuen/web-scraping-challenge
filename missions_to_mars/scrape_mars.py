@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
 # import dependencies
 from bs4 import BeautifulSoup as bs
 import requests
@@ -8,6 +7,11 @@ import pymongo
 from splinter import Browser
 import pandas as pd
 from selenium import webdriver
+
+def init_browser():
+    executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
+    browser = Browser("chrome", **executable_path, headless=False)
+    return browser
 
 def scrape():
     # empty dictionary to store all values in
@@ -25,17 +29,17 @@ def scrape():
 
     # find title and paragraph
     title = soup.find('div', class_='content_title')
+    mars['title']=title.text
     #print(title.text)
 
     paragraph = soup.find('div', class_='article_teaser_body')
-    mars['paragraph'] = paragraph.text
+    #paragraph = paragraph.get_text()
+    mars['paragraph'] = paragraph
     #print(mars)
 
 
     # # JPL Mars Space Images - Featured Image
-    get_ipython().system('which chromedriver')
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = init_browser()
     url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(url)
     html = browser.html
@@ -82,7 +86,7 @@ def scrape():
 
     # save html to file and hide index
     mars_df.to_html('mars_facts.html', index=False)
-    get_ipython().system('open mars_facts.html')
+    #get_ipython().system('open mars_facts.html')
 
     # # Mars Hemispheres
     # SELENIUM

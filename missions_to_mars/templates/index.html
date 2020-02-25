@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mssion to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data!</a></p>
+    </div>
+    <h2>Latest Mars News</h2>
+    <h3>{{ mars.title }}</h3>
+    <h4>{{ mars.mars_weather }}</h3>
+  </div>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="title">Featured Mars Image</h2>
+            <img id="feautured_image" src="{{ mars.featured_image_url}}" alt="Featured Mars Image">
+        </div>
+        <div class="col-md-4">
+            <h4 class="side-title">Current Weather on Mars</h4>
+            <p>{{ mars.mars_weather }}</p>
+            <h4 class="side-title">Facts about Mars</h4>
+            <!-- insert table -->
+        </div>
+    <div class="row-spacer">
+        <div class="col-12 row-spacer"></div>
+    </div>
+    <div class='row'>
+        <h2 class="title">Mars Hemispheres</h2>
+        <!-- insert four photos -->
+    </div>
+    </div>
+
+  </div>
+  
+</body>
+
+</html>
