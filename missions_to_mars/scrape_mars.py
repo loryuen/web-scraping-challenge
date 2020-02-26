@@ -7,6 +7,7 @@ import pymongo
 from splinter import Browser
 import pandas as pd
 from selenium import webdriver
+import time
 
 # Create connection variable
 conn = 'mongodb://localhost:27017'
@@ -31,24 +32,31 @@ def scrape():
     mars = {}
 
     # # NASA Mars News
-    # URL of MARS NEWS page to be scraped
+    # URL of MARS WEATHER page to be scraped
     url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
-
-    # SELENIUM
-    driver = webdriver.Chrome()
-    response = driver.get(url)
-    soup = bs(driver.page_source, "html.parser")
-    driver.quit()
+    # retrieve page with requests module
+    response = requests.get(url)
+    # create Beautiful Soup object and parse
+    soup = bs(response.text, 'lxml')
 
     # find title and paragraph
-    title = soup.find('div', class_='content_title')
-    mars['title']=title.text
-    #print(title.text)
-
-    paragraph = soup.find('div', class_='article_teaser_body')
-    #paragraph = paragraph.get_text()
-    mars['paragraph'] = paragraph
+    title = soup.find('div', class_='content_title').text
+    mars['title']=title.replace('\n','')
+    #print(mars['title'])
     #print(mars)
+
+    paragraph = soup.find('div', class_='rollover_description_inner')
+    mars['paragraph'] = paragraph.text
+    #print(mars)
+    # SELENIUM
+    #url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
+    #driver = webdriver.Chrome()
+    #response = driver.get(url)
+    #soup = bs(driver.page_source, "html.parser")
+    #time.sleep(3)
+    #para = '//*[@id="page"]/div[2]/div/article/div/section/div/ul/li[1]/div/div/div[3]'
+    #mars['paragraph'] = driver.find_element_by_xpath(para).text
+    #driver.quit()
 
 
     # # JPL Mars Space Images - Featured Image

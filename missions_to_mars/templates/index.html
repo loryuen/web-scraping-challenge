@@ -20,13 +20,13 @@
         <div class="col-mi-12">
             <h2>Latest Mars News</h2>
             <h3>{{ mars_db.title }}</h3>
-            <h4>{{ mars_db.mars_weather }}</h3>
+            <h4>{{ mars_db.paragraph }}</h3>
         </div>
 
     <div class="row-spacer">
         <div class="col-12 row-spacer"></div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-8">
             <h2 class="title">Featured Mars Image</h2>
@@ -42,6 +42,7 @@
             <a>
                 <h4 class="side-title">Facts about Mars</h4>
                 <!-- insert table -->
+                <div class="table"> {{ mars_db.mars_html | safe}}</div>
             </a>
             
         </div>
@@ -51,6 +52,12 @@
     <div class='row'>
         <h2 class="title">Mars Hemispheres</h2>
         <!-- insert four photos -->
+            {% for x in mars_db.hemisphere_image_urls %}
+            <a>
+                <img id="hemisphere_image" src="{{ x.img_url}}" alt="Hemisphere Mars Image">
+                <p class="sub-title">{{ x.title }}</p>
+            </a>
+            {% endfor %}
     </div>
     </div>
 
