@@ -16,18 +16,18 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data!</a></p>
     </div>
     <h2>Latest Mars News</h2>
-    <h3>{{ mars.title }}</h3>
-    <h4>{{ mars.mars_weather }}</h3>
+    <h3>{{ mars_db.title }}</h3>
+    <h4>{{ mars_db.mars_weather }}</h3>
   </div>
   <div class="container">
     <div class="row">
         <div class="col-md-8">
             <h2 class="title">Featured Mars Image</h2>
-            <img id="feautured_image" src="{{ mars.featured_image_url}}" alt="Featured Mars Image">
+            <img id="feautured_image" src="{{ mars_db.featured_image_url}}" alt="Featured Mars Image">
         </div>
         <div class="col-md-4">
             <h4 class="side-title">Current Weather on Mars</h4>
-            <p>{{ mars.mars_weather }}</p>
+            <p>{{ mars_db.mars_weather }}</p>
             <h4 class="side-title">Facts about Mars</h4>
             <!-- insert table -->
         </div>

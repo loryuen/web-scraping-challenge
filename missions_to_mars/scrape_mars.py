@@ -8,6 +8,19 @@ from splinter import Browser
 import pandas as pd
 from selenium import webdriver
 
+# Create connection variable
+conn = 'mongodb://localhost:27017'
+
+# Pass connection to the pymongo instance.
+client = pymongo.MongoClient(conn)
+
+# Connect to a database. Will create one if not already available.
+db = client.mars_db
+
+# Drops collection if available to remove duplicates
+#db.mars_collection.drop()
+db.mars_collection
+
 def init_browser():
     executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
     browser = Browser("chrome", **executable_path, headless=False)
@@ -120,5 +133,7 @@ def scrape():
     mars['hemisphere_image_urls']=hemisphere_image_urls
     #print(mars)
     driver.quit()
+
+    #db.mars_collection.insert(mars)
 
     return mars
