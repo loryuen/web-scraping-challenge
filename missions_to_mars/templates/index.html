@@ -15,21 +15,35 @@
       <h1>Mssion to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data!</a></p>
     </div>
-    <h2>Latest Mars News</h2>
-    <h3>{{ mars_db.title }}</h3>
-    <h4>{{ mars_db.mars_weather }}</h3>
   </div>
-  <div class="container">
+    <div class="container">
+        <div class="col-mi-12">
+            <h2>Latest Mars News</h2>
+            <h3>{{ mars_db.title }}</h3>
+            <h4>{{ mars_db.mars_weather }}</h3>
+        </div>
+
+    <div class="row-spacer">
+        <div class="col-12 row-spacer"></div>
+    </div>
+    
     <div class="row">
         <div class="col-md-8">
             <h2 class="title">Featured Mars Image</h2>
-            <img id="feautured_image" src="{{ mars_db.featured_image_url}}" alt="Featured Mars Image">
+            <a>
+                <img id="feautured_image" src="{{ mars_db.featured_image_url}}" alt="Featured Mars Image">
+            </a>
         </div>
         <div class="col-md-4">
-            <h4 class="side-title">Current Weather on Mars</h4>
-            <p>{{ mars_db.mars_weather }}</p>
-            <h4 class="side-title">Facts about Mars</h4>
-            <!-- insert table -->
+            <a>
+                <h4 class="side-title">Current Weather on Mars</h4>
+                <p>{{ mars_db.mars_weather }}</p>
+            </a>
+            <a>
+                <h4 class="side-title">Facts about Mars</h4>
+                <!-- insert table -->
+            </a>
+            
         </div>
     <div class="row-spacer">
         <div class="col-12 row-spacer"></div>
