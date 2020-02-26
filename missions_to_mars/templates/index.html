@@ -12,12 +12,12 @@
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
-      <h1>Mssion to Mars</h1>
+      <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data!</a></p>
     </div>
   </div>
     <div class="container">
-        <div class="col-mi-12">
+        <div class="col-12">
             <h2>Latest Mars News</h2>
             <h3>{{ mars_db.title }}</h3>
             <h4>{{ mars_db.paragraph }}</h3>
@@ -30,38 +30,44 @@
     <div class="row">
         <div class="col-md-8">
             <h2 class="title">Featured Mars Image</h2>
-            <a>
-                <img id="feautured_image" src="{{ mars_db.featured_image_url}}" alt="Featured Mars Image">
+            <a href="{{ mars_db.featured_image_url}}" target="_blank">
+                <img id="feautured_image" src="{{ mars_db.featured_image_url}}" alt="Featured Mars Image" width=95%>
             </a>
         </div>
         <div class="col-md-4">
             <a>
-                <h4 class="side-title">Current Weather on Mars</h4>
-                <p>{{ mars_db.mars_weather }}</p>
+                <h4 class="side-title" style='color: black'>Current Weather on Mars</h4>
+                <p style='color: black'>{{ mars_db.mars_weather }}</p>
             </a>
             <a>
-                <h4 class="side-title">Facts about Mars</h4>
+                <h4 class="side-title" style='color: black'>Facts about Mars</h4>
                 <!-- insert table -->
-                <div class="table"> {{ mars_db.mars_html | safe}}</div>
+                <div class="table" style='color: black'> {{ mars_db.mars_html | safe}}</div>
             </a>
             
         </div>
-    <div class="row-spacer">
-        <div class="col-12 row-spacer"></div>
-    </div>
-    <div class='row'>
-        <h2 class="title">Mars Hemispheres</h2>
-        <!-- insert four photos -->
-            {% for x in mars_db.hemisphere_image_urls %}
-            <a>
-                <img id="hemisphere_image" src="{{ x.img_url}}" alt="Hemisphere Mars Image">
-                <p class="sub-title">{{ x.title }}</p>
-            </a>
-            {% endfor %}
     </div>
     </div>
+    
+    <div class='container text-center'>
+        <div class="row-spacer">
+                <div class="col-12 row-spacer"></div>
+        </div>
+            <div class='row'>
+                <h2 class="title">Mars Hemispheres</h2>
+                <!-- insert four photos -->
 
-  </div>
+                    {% for x in mars_db.hemisphere_image_urls %}
+                    <a class= "hemispheres" href="{{ x.img_url }}" target="_blank">
+                        <img id="hemisphere_image" src="{{ x.img_url}}"  width=400px alt="Hemisphere Mars Image">
+                        <figcaption class="sub-title">{{ x.title }}</figcaption>
+                    </a>
+                    {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+    
   
 </body>
 
