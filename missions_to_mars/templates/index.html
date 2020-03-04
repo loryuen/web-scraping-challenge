@@ -35,15 +35,15 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a>
+            <section>
                 <h4 class="side-title" style='color: black'>Current Weather on Mars</h4>
                 <p style='color: black'>{{ mars_db.mars_weather }}</p>
-            </a>
-            <a>
+            </section>
+            <section>
                 <h4 class="side-title" style='color: black'>Facts about Mars</h4>
                 <!-- insert table -->
                 <div class="table" style='color: black'> {{ mars_db.mars_html | safe}}</div>
-            </a>
+            </section>
             
         </div>
     </div>
@@ -54,15 +54,21 @@
                 <div class="col-12 row-spacer"></div>
         </div>
             <div class='row'>
-                <h2 class="title">Mars Hemispheres</h2>
-                <!-- insert four photos -->
 
-                    {% for x in mars_db.hemisphere_image_urls %}
-                    <a class= "hemispheres" href="{{ x.img_url }}" target="_blank">
-                        <img id="hemisphere_image" src="{{ x.img_url}}"  width=400px alt="Hemisphere Mars Image">
-                        <figcaption class="sub-title">{{ x.title }}</figcaption>
-                    </a>
-                    {% endfor %}
+                
+                    <h2 class="title">Mars Hemispheres</h2>
+                    <!-- insert four photos -->
+                        
+                        {% for x in mars_db.hemisphere_image_urls %}
+                        <div class="col-md-6">
+                        <a class= "hemispheres" href="{{ x.img_url }}" target="_blank">
+                            <img id="hemisphere_image" src="{{ x.img_url}}"  width=400px alt="Hemisphere Mars Image">
+                            <figcaption class="sub-title">{{ x.title }}</figcaption>
+                        </a>
+                        </div>
+                        {% endfor %}
+                
+                
             </div>
         </div>
         
